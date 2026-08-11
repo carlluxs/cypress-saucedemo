@@ -31,5 +31,9 @@ module.exports = defineConfig({
     // Cada teste comeca com cookies e localStorage limpos.
     // Garante independencia entre casos de teste (secao 8.1).
     testIsolation: true,
+
+    // Desliga o acesso a Cypress.env() pelo codigo do navegador — recurso
+    // que esta suite nao utiliza e que o Cypress 15 sinaliza como inseguro.
+    allowCypressEnv: false,
   },
 })
