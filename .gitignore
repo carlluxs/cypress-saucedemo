@@ -1,0 +1,24 @@
+# Dependencias instaladas pelo npm — reinstalaveis via package.json
+node_modules/
+
+# Credenciais e variaveis de ambiente — NUNCA versionar
+.env
+.env.*
+cypress.env.json
+
+# Saidas de execucao do Cypress (videos, prints de falha, relatorios)
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+cypress/results/
+
+# Logs
+npm-debug.log*
+*.log
+
+# Sistema operacional / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,22 @@
+{
+  "name": "cadu",
+  "version": "1.0.0",
+  "description": "Suite de testes automatizados com Cypress — portfolio de QA",
+  "scripts": {
+    "cy:open": "cypress open",
+    "test:e2e": "cypress run"
+  },
+  "keywords": [
+    "cypress",
+    "qa",
+    "automacao",
+    "e2e",
+    "testes"
+  ],
+  "author": "Carlos Rodrigues",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.20.1"
+  }
+}
