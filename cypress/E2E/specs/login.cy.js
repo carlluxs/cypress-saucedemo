@@ -1,18 +1,4 @@
-// ============================================================================
 // Casos de teste — Autenticacao (Sauce Demo)
-// ============================================================================
-//
-// Cada caso segue a estrutura Dado-Quando-Entao (Given-When-Then), a mesma
-// tripla do padrao Arrange-Action-Assert descrito no documento de arquitetura
-// (secao 9.1), escrita na linguagem do negocio:
-//
-//   Dado   (Arrange) — o contexto inicial: navegar ate a tela, semear dados
-//   Quando (Action)  — a acao que exercita a regra sob teste, e apenas ela
-//   Entao  (Assert)  — o resultado esperado
-//
-// Escrever os cenarios nesse vocabulario aproxima o codigo do teste da
-// descricao de negocio, sem exigir a camada extra de arquivos .feature.
-// ============================================================================
 
 import LoginPage from '../pages/LoginPage/LoginPage'
 
