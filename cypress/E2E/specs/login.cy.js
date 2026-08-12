@@ -1,6 +1,8 @@
 // Casos de teste — Autenticação (Sauce Demo)
 
 import LoginPage from '../pages/LoginPage/LoginPage'
+import LoginElements from '../pages/LoginPage/LoginElements'
+import InventoryPage from '../pages/InventoryPage/InventoryPage'
 
 describe('Autenticação', () => {
   it('CT-001 - Deve autenticar um usuário válido e exibir a listagem de produtos', () => {
@@ -35,5 +37,39 @@ describe('Autenticação', () => {
 
     // Então devo ver uma mensagem informando o bloqueio
     LoginPage.deveMostrarErro('Sorry, this user has been locked out')
+  })
+
+  it('CT-004 - Não deve autenticar sem preencher os campos', () => {
+    // Dado que estou na tela de login com os campos vazios
+    LoginPage.visitar()
+
+    // Quando confirmo sem preencher usuário e senha
+    LoginPage.confirmarSemPreencher()
+
+    // Então devo ver o aviso de usuário obrigatório
+    LoginPage.deveMostrarErro('Username is required')
+  })
+
+  it('CT-005 - Não deve autenticar sem preencher a senha', () => {
+    // Dado que informei apenas o usuário
+    LoginPage.visitar()
+
+    // Quando confirmo com o campo de senha vazio
+    LoginPage.fazerLogin('standard_user', '')
+
+    // Então devo ver o aviso de senha obrigatória
+    LoginPage.deveMostrarErro('Password is required')
+  })
+
+  it('CT-006 - Deve encerrar a sessão pelo menu lateral', () => {
+    // Dado que estou autenticado na listagem de produtos
+    cy.login()
+
+    // Quando faço logout pelo menu lateral
+    InventoryPage.fazerLogout()
+
+    // Então devo retornar à tela de login
+    cy.url().should('eq', 'https://www.saucedemo.com/')
+    LoginElements.botaoLogin().should('be.visible')
   })
 })

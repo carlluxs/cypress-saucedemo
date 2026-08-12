@@ -34,6 +34,39 @@ const InventoryPage = {
   produtoNaoDeveEstarNoCarrinho: (produto) => {
     InventoryElements.botaoAdicionar(produto).should('be.visible')
   },
+
+  ordenarPor: (opcao) => {
+    InventoryElements.seletorOrdenacao().select(opcao)
+  },
+
+  fazerLogout: () => {
+    InventoryElements.botaoMenu().click()
+    InventoryElements.linkLogout().click()
+  },
+
+  deveExibirQuantidadeDeProdutos: (quantidade) => {
+    InventoryElements.itens().should('have.length', quantidade)
+  },
+
+  // Pega os nomes da tela e compara com a mesma lista ordenada por código.
+  // Se forem iguais, a ordenação do site está correta.
+  nomesDevemEstarOrdenados: (ordem) => {
+    InventoryElements.nomesDosProdutos().then(($nomes) => {
+      const daTela = [...$nomes].map((el) => el.innerText)
+      const esperado = [...daTela].sort()
+      if (ordem === 'desc') esperado.reverse()
+      expect(daTela).to.deep.equal(esperado)
+    })
+  },
+
+  precosDevemEstarOrdenados: (ordem) => {
+    InventoryElements.precosDosProdutos().then(($precos) => {
+      const daTela = [...$precos].map((el) => Number(el.innerText.replace('$', '')))
+      const esperado = [...daTela].sort((a, b) => a - b)
+      if (ordem === 'desc') esperado.reverse()
+      expect(daTela).to.deep.equal(esperado)
+    })
+  },
 }
 
 export default InventoryPage

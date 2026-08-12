@@ -1,6 +1,7 @@
 // Casos de teste — Carrinho de compras (Sauce Demo)
 
 import InventoryPage from '../pages/InventoryPage/InventoryPage'
+import CheckoutPage from '../pages/CheckoutPage/CheckoutPage'
 
 const MOCHILA = 'sauce-labs-backpack'
 const CAMISETA = 'sauce-labs-bolt-t-shirt'
@@ -57,5 +58,30 @@ describe('Carrinho de compras', () => {
     // Então devo estar na tela do carrinho, com o produto listado
     cy.url().should('include', '/cart.html')
     cy.contains('Sauce Labs Backpack').should('be.visible')
+  })
+
+  it('CT-011 - Deve voltar para a listagem sem esvaziar o carrinho', () => {
+    // Dado que estou na tela do carrinho com um produto
+    InventoryPage.adicionarProduto(MOCHILA)
+    InventoryPage.abrirCarrinho()
+
+    // Quando seleciono "Continue Shopping"
+    CheckoutPage.continuarComprando()
+
+    // Então devo voltar à listagem com o contador preservado
+    cy.url().should('include', '/inventory.html')
+    InventoryPage.contadorDeveExibir(1)
+  })
+
+  it('CT-012 - Deve remover um produto pela tela do carrinho', () => {
+    // Dado que estou na tela do carrinho com um produto
+    InventoryPage.adicionarProduto(MOCHILA)
+    InventoryPage.abrirCarrinho()
+
+    // Quando removo o produto por essa tela
+    InventoryPage.removerProduto(MOCHILA)
+
+    // Então o carrinho deve ficar vazio
+    InventoryPage.contadorNaoDeveExistir()
   })
 })

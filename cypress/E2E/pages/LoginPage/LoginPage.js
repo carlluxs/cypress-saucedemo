@@ -8,9 +8,15 @@ const LoginPage = {
     cy.visit('/')
   },
 
+  // O type() do Cypress reclama de texto vazio, então só preenche o que veio.
+  // É o que permite testar o campo obrigatório passando '' no lugar do valor.
   fazerLogin: (usuario, senha) => {
-    LoginElements.campoUsuario().type(usuario)
-    LoginElements.campoSenha().type(senha)
+    if (usuario) LoginElements.campoUsuario().type(usuario)
+    if (senha) LoginElements.campoSenha().type(senha)
+    LoginElements.botaoLogin().click()
+  },
+
+  confirmarSemPreencher: () => {
     LoginElements.botaoLogin().click()
   },
 
