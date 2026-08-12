@@ -14,6 +14,7 @@ describe('Carrinho de compras', () => {
   it('CT-007 - Deve adicionar um produto ao carrinho', () => {
     // Dado que o carrinho está vazio
     InventoryPage.contadorNaoDeveExistir()
+    cy.evidencia('carrinho vazio')
 
     // Quando adiciono um produto
     InventoryPage.adicionarProduto(MOCHILA)
@@ -21,6 +22,7 @@ describe('Carrinho de compras', () => {
     // Então o contador deve exibir um item e o produto deve constar no carrinho
     InventoryPage.contadorDeveExibir(1)
     InventoryPage.produtoDeveEstarNoCarrinho(MOCHILA)
+    cy.evidencia('produto adicionado')
   })
 
   it('CT-008 - Deve acumular a quantidade ao adicionar vários produtos', () => {

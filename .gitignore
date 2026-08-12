@@ -22,3 +22,6 @@ desktop.ini
 .DS_Store
 .vscode/
 .idea/
+
+# Evidencias geradas na execucao dos testes
+evidencias/

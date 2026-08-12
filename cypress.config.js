@@ -17,6 +17,10 @@ module.exports = defineConfig({
     video: false,
     screenshotOnRunFailure: true,
 
+    // Print vai pra evidencias/, organizado por spec
+    screenshotsFolder: 'evidencias',
+    trashAssetsBeforeRuns: true,
+
     // Cada teste começa com cookies e localStorage limpos, pra nenhum teste
     // depender do resultado de outro
     testIsolation: true,
