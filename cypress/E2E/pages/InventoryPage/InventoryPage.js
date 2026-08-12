@@ -1,4 +1,4 @@
-// Acoes e verificacoes da tela de produtos do Sauce Demo
+// Ações e verificações da tela de produtos do Sauce Demo
 
 import InventoryElements from './InventoryElements'
 
@@ -21,12 +21,12 @@ const InventoryPage = {
       .and('have.text', String(quantidade))
   },
 
-  // 'not.exist' porque o site remove o contador do DOM quando nao ha itens
+  // 'not.exist' porque o site remove o contador do DOM quando não há itens
   contadorNaoDeveExistir: () => {
     InventoryElements.contadorCarrinho().should('not.exist')
   },
 
-  // O botao vira "Remove" quando o produto esta no carrinho
+  // O botão vira "Remove" quando o produto está no carrinho
   produtoDeveEstarNoCarrinho: (produto) => {
     InventoryElements.botaoRemover(produto).should('be.visible')
   },

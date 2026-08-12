@@ -1,4 +1,4 @@
-// Acoes e verificacoes da tela de login do Sauce Demo
+// Ações e verificações da tela de login do Sauce Demo
 
 import LoginElements from './LoginElements'
 
@@ -8,8 +8,6 @@ const LoginPage = {
     cy.visit('/')
   },
 
-  // Usuario e senha como parametro: o mesmo metodo serve pro login valido,
-  // pro usuario bloqueado e pra senha errada
   fazerLogin: (usuario, senha) => {
     LoginElements.campoUsuario().type(usuario)
     LoginElements.campoSenha().type(senha)
