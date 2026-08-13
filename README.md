@@ -40,7 +40,8 @@ interface ficam restritas ao arquivo de elementos correspondente.
 ## Casos de teste
 
 Estruturados em Dado / Quando / Então. O identificador no título corresponde ao
-caso na documentação de testes.
+caso documentado em [`docs/`](docs), onde cada um traz pré-condição, passos,
+resultado esperado e as evidências da execução.
 
 ```js
 it('CT-007 - Deve adicionar um produto ao carrinho', () => {
@@ -83,12 +84,27 @@ dependência entre casos.
 
 ## Cobertura
 
-| Módulo | Casos | Escopo |
-|---|---|---|
-| Autenticação | CT-001 a CT-006 | Credenciais válidas e inválidas, usuário bloqueado, campos obrigatórios, logout |
-| Carrinho | CT-007 a CT-012 | Inclusão, acúmulo, remoção e persistência entre telas |
-| Checkout | CT-013 a CT-018 | Fluxo completo, campos obrigatórios, composição do total, cancelamento |
-| Catálogo | CT-019 a CT-024 | Listagem, ordenação por nome e preço, detalhe do produto |
+| Módulo | Casos | Escopo | Documentação |
+|---|---|---|---|
+| Autenticação | CT-001 a CT-006 | Credenciais válidas e inválidas, usuário bloqueado, campos obrigatórios, logout | [docs/login.md](docs/login.md) |
+| Carrinho | CT-007 a CT-012 | Inclusão, acúmulo, remoção e persistência entre telas | [docs/carrinho.md](docs/carrinho.md) |
+| Checkout | CT-013 a CT-018 | Fluxo completo, campos obrigatórios, composição do total, cancelamento | [docs/checkout.md](docs/checkout.md) |
+| Catálogo | CT-019 a CT-024 | Listagem, ordenação por nome e preço, detalhe do produto | [docs/catalogo.md](docs/catalogo.md) |
+
+## Evidências
+
+Cada caso registra prints da execução pelo comando `cy.evidencia('descrição')`,
+que salva em `evidencias/<spec>/` com o identificador do caso e a ordem da
+chamada no nome do arquivo:
+
+```
+evidencias/carrinho.cy.js/CT-007 - 1 - carrinho vazio.png
+evidencias/carrinho.cy.js/CT-007 - 2 - produto adicionado.png
+```
+
+O identificador vem do título do teste, e a numeração reinicia a cada caso. Os
+arquivos são regerados a cada execução e estão versionados junto da
+documentação, que os referencia.
 
 ## Tecnologias
 
