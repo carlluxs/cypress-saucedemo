@@ -35,12 +35,14 @@ describe('Carrinho de compras', () => {
 
     // Então o contador deve refletir os dois itens
     InventoryPage.contadorDeveExibir(2)
+    cy.evidencia('dois produtos no carrinho')
   })
 
   it('CT-009 - Deve remover um produto do carrinho', () => {
     // Dado que há um produto no carrinho
     InventoryPage.adicionarProduto(MOCHILA)
     InventoryPage.contadorDeveExibir(1)
+    cy.evidencia('produto no carrinho')
 
     // Quando removo esse produto
     InventoryPage.removerProduto(MOCHILA)
@@ -48,6 +50,7 @@ describe('Carrinho de compras', () => {
     // Então o carrinho deve voltar a ficar vazio
     InventoryPage.contadorNaoDeveExistir()
     InventoryPage.produtoNaoDeveEstarNoCarrinho(MOCHILA)
+    cy.evidencia('carrinho vazio apos remover')
   })
 
   it('CT-010 - Deve manter o item no carrinho ao navegar até a tela do carrinho', () => {
@@ -60,6 +63,7 @@ describe('Carrinho de compras', () => {
     // Então devo estar na tela do carrinho, com o produto listado
     cy.url().should('include', '/cart.html')
     cy.contains('Sauce Labs Backpack').should('be.visible')
+    cy.evidencia('produto listado na tela do carrinho')
   })
 
   it('CT-011 - Deve voltar para a listagem sem esvaziar o carrinho', () => {
@@ -67,12 +71,15 @@ describe('Carrinho de compras', () => {
     InventoryPage.adicionarProduto(MOCHILA)
     InventoryPage.abrirCarrinho()
 
+    cy.evidencia('carrinho antes de continuar comprando')
+
     // Quando seleciono "Continue Shopping"
     CheckoutPage.continuarComprando()
 
     // Então devo voltar à listagem com o contador preservado
     cy.url().should('include', '/inventory.html')
     InventoryPage.contadorDeveExibir(1)
+    cy.evidencia('listagem com contador preservado')
   })
 
   it('CT-012 - Deve remover um produto pela tela do carrinho', () => {
@@ -80,10 +87,13 @@ describe('Carrinho de compras', () => {
     InventoryPage.adicionarProduto(MOCHILA)
     InventoryPage.abrirCarrinho()
 
+    cy.evidencia('produto na tela do carrinho')
+
     // Quando removo o produto por essa tela
     InventoryPage.removerProduto(MOCHILA)
 
     // Então o carrinho deve ficar vazio
     InventoryPage.contadorNaoDeveExistir()
+    cy.evidencia('carrinho vazio')
   })
 })
